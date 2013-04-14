@@ -163,7 +163,7 @@ class Program{
 				if( !(char.IsDigit(c)) ){
 					Token.tt = TipoToken.TK_NUMERO;
 					estado = Estados.FIN;
-					//index--;//modificado
+					index--;//modificado
 				}else
 					Token.lexema += c;
 				finToken();
@@ -308,6 +308,9 @@ class Program{
 		else return false;
 	}
 	static char getChar(){
+		if(index>=cadena.Length){
+			return '|';
+		}
 		return cadena[index];
 	}
 }
