@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="AnalizadorLexico/Main.cs">
     <Files>
-      <File FileName="AnalizadorLexico/Main.cs" Line="43" Column="11" />
+      <File FileName="AnalizadorLexico/Main.cs" Line="39" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,9 +17,11 @@
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
         <State>
-          <Value>cout</Value>
-          <Value>fileNameLabel.Text</Value>
-          <Value>lexeme_analyzer.StartInfo.Arguments</Value>
+          <Value>linea</Value>
+          <Value>cadena</Value>
+          <Value>Token.lexema</Value>
+          <Value>c</Value>
+          <Value>index</Value>
         </State>
       </Pad>
     </Pads>
