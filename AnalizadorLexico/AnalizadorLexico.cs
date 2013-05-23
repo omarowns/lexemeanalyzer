@@ -35,6 +35,7 @@ class AnalizadorLexico{
 		this.source = src;
 		this.file 	= new StreamReader (this.source);
 		this.linea 	= file.ReadLine ();
+		this.cadena = this.linea.ToCharArray ();
 	}
 
 	public void lectura(){
@@ -55,223 +56,235 @@ class AnalizadorLexico{
 	}
 
 	public Token analizador(){
-		Token t = new Token();
-		Estados estado = Estados.INICIO;
-		while( estado != Estados.FIN ){
-			switch( estado ){
+		Token t = new Token ();
+		if (index < cadena.Length) {
+			Estados estado = Estados.INICIO;
+			while (estado != Estados.FIN) {
+				switch (estado) {
 				case Estados.INICIO:
-				c = getChar();
-				saltar();
-				if( char.IsLetter(c) || c.Equals('_') ){
-					estado = Estados.ID;
-					t.lexema += c;
-				}else if( char.IsDigit(c) ){ //|| c.Equals('+') || c.Equals('-') ){//positivos o negativos
-					estado = Estados.NUM;
-					t.lexema += c;
-				}else if( c.Equals('+')){
-					t.tt = TipoToken.TK_SUMA;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else if( c.Equals('-')){
-					t.tt = TipoToken.TK_RESTA;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else if( c.Equals('*')){
-					t.tt = TipoToken.TK_MULTIPLICACION;
-					estado = Estados.MULTIPLICAR;
-					t.lexema += c; 
-				}else if( c.Equals('/')){
-					t.tt = TipoToken.TK_DIVISION;
-					estado = Estados.DIVIDIR;
-					t.lexema += c;
-				}else if( c.Equals(';')){
-					t.tt = TipoToken.TK_PUNTOYCOMA;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else if( c.Equals(',')){
-					t.tt = TipoToken.TK_COMA;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else if( c.Equals('(')){
-					t.tt = TipoToken.TK_PARI;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else if( c.Equals(')')){
-					t.tt = TipoToken.TK_PARD;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else if( c.Equals('{')){
-					t.tt = TipoToken.TK_LLAVEI;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else if( c.Equals('}')){
-					t.tt = TipoToken.TK_LLAVED;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else if( c.Equals('=')){
-					t.tt = TipoToken.TK_ASIGNACION;
-					estado = Estados.ASIGNAR;
-					t.lexema += c;
-				}else if( c.Equals('<')){
-					t.tt = TipoToken.TK_MENOR;
-					estado = Estados.CMENOR;
-					t.lexema += c;
-				}else if( c.Equals('>')){
-					t.tt = TipoToken.TK_MAYOR;
-					estado = Estados.CMAYOR;
-					t.lexema += c;
-				}else if( c.Equals('!')){
-					t.tt = TipoToken.TK_CDIFERENTE;
-					estado = Estados.CDIFERENCIAR;
-					t.lexema += c;
-				}else if ( c.Equals(null) ) {
-					t.tt = TipoToken.TK_EOF;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else {
-					t.tt = TipoToken.TK_ERROR;
-					estado = Estados.FIN;
-				}
-				simboloTemporal = c;
-				break;
+					c = getChar ();
+					saltar ();
+					if (char.IsLetter (c) || c.Equals ('_')) {
+						estado = Estados.ID;
+						t.lexema += c;
+					} else if (char.IsDigit (c)) { //|| c.Equals('+') || c.Equals('-') ){//positivos o negativos
+						estado = Estados.NUM;
+						t.lexema += c;
+					} else if (c.Equals ('+')) {
+						t.tt = TipoToken.TK_SUMA;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else if (c.Equals ('-')) {
+						t.tt = TipoToken.TK_RESTA;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else if (c.Equals ('*')) {
+						t.tt = TipoToken.TK_MULTIPLICACION;
+						estado = Estados.MULTIPLICAR;
+						t.lexema += c; 
+					} else if (c.Equals ('/')) {
+						t.tt = TipoToken.TK_DIVISION;
+						estado = Estados.DIVIDIR;
+						t.lexema += c;
+					} else if (c.Equals (';')) {
+						t.tt = TipoToken.TK_PUNTOYCOMA;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else if (c.Equals (',')) {
+						t.tt = TipoToken.TK_COMA;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else if (c.Equals ('(')) {
+						t.tt = TipoToken.TK_PARI;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else if (c.Equals (')')) {
+						t.tt = TipoToken.TK_PARD;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else if (c.Equals ('{')) {
+						t.tt = TipoToken.TK_LLAVEI;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else if (c.Equals ('}')) {
+						t.tt = TipoToken.TK_LLAVED;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else if (c.Equals ('=')) {
+						t.tt = TipoToken.TK_ASIGNACION;
+						estado = Estados.ASIGNAR;
+						t.lexema += c;
+					} else if (c.Equals ('<')) {
+						t.tt = TipoToken.TK_MENOR;
+						estado = Estados.CMENOR;
+						t.lexema += c;
+					} else if (c.Equals ('>')) {
+						t.tt = TipoToken.TK_MAYOR;
+						estado = Estados.CMAYOR;
+						t.lexema += c;
+					} else if (c.Equals ('!')) {
+						t.tt = TipoToken.TK_CDIFERENTE;
+						estado = Estados.CDIFERENCIAR;
+						t.lexema += c;
+					} else if (c.Equals (null)) {
+						t.tt = TipoToken.TK_EOF;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else {
+						t.tt = TipoToken.TK_ERROR;
+						estado = Estados.FIN;
+					}
+					simboloTemporal = c;
+					break;
 				case Estados.ID://completar identificador o pr
-				try{
-					c = getChar();
-					if( !(char.IsLetterOrDigit(c) || c.Equals('_') ) ){
+					try {
+						c = getChar ();
+						if (!(char.IsLetterOrDigit (c) || c.Equals ('_'))) {
+							t.tt = TipoToken.TK_IDENTIFICADOR;
+							estado = Estados.FIN;
+							buscarPR (t);
+							index--;//modificado
+						} else
+							t.lexema += c;
+						finToken ();
+					} catch (IndexOutOfRangeException) {
 						t.tt = TipoToken.TK_IDENTIFICADOR;
 						estado = Estados.FIN;
-						buscarPR(t);
-						index--;//modificado
-					}else
-						t.lexema += c;
-					finToken();
-				}catch(IndexOutOfRangeException){
-					t.tt = TipoToken.TK_IDENTIFICADOR;
-					estado = Estados.FIN;
-					buscarPR(t);
-				}
-				break;
+						buscarPR (t);
+					}
+					break;
 				case Estados.NUM:
-				c = getChar();
-				if( !(char.IsDigit(c)) ){
-					t.tt = TipoToken.TK_NUMERO;
-					estado = Estados.FIN;
-					index--;//modificado
-				}else
-					t.lexema += c;
-				finToken();
-				break;
+					c = getChar ();
+					if (!(char.IsDigit (c))) {
+						t.tt = TipoToken.TK_NUMERO;
+						estado = Estados.FIN;
+						index--;//modificado
+					} else
+						t.lexema += c;
+					finToken ();
+					break;
 				case Estados.MULTIPLICAR: 
-				c = getChar();
-				if( simboloTemporal.Equals('*') && c.Equals('/') ){
-					t.tt = TipoToken.TK_BLOQUE_C_D;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else{
-					t.tt = TipoToken.TK_MULTIPLICACION;
-					estado = Estados.FIN;
-					t.lexema = "*";
-					index--;
-				}
-				break;
+					c = getChar ();
+					if (simboloTemporal.Equals ('*') && c.Equals ('/')) {
+						t.tt = TipoToken.TK_BLOQUE_C_D;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else {
+						t.tt = TipoToken.TK_MULTIPLICACION;
+						estado = Estados.FIN;
+						t.lexema = "*";
+						index--;
+					}
+					break;
 				case Estados.DIVIDIR: 
-				c = getChar();
-				if( simboloTemporal.Equals('/') && c.Equals('*') ){
-					t.tt = TipoToken.TK_BLOQUE_C_I;
-					estado = Estados.BLOQUE_C_I;
-					t.lexema = "";
-					simboloTemporal = c;
-				}else if( simboloTemporal.Equals('/') && c.Equals('/') ){
-					t.tt = TipoToken.TK_COMENTARIO_LINEA;
-					estado = Estados.COMENTARIO_LINEA;
-					t.lexema += c;
-					//index--;
-				}else{
-					t.tt = TipoToken.TK_DIVISION;
-					estado = Estados.FIN;
-					t.lexema = "/";
-					index--;
-				}
-				break;
+					c = getChar ();
+					if (simboloTemporal.Equals ('/') && c.Equals ('*')) {
+						t.tt = TipoToken.TK_BLOQUE_C_I;
+						estado = Estados.BLOQUE_C_I;
+						t.lexema = "";
+						simboloTemporal = c;
+					} else if (simboloTemporal.Equals ('/') && c.Equals ('/')) {
+						t.tt = TipoToken.TK_COMENTARIO_LINEA;
+						estado = Estados.COMENTARIO_LINEA;
+						t.lexema += c;
+						//index--;
+					} else {
+						t.tt = TipoToken.TK_DIVISION;
+						estado = Estados.FIN;
+						t.lexema = "/";
+						index--;
+					}
+					break;
 				case Estados.ASIGNAR: 
-				c = getChar();
-				if( simboloTemporal.Equals('=') && c.Equals('=') ){
-					t.tt = TipoToken.TK_CIGUALDAD;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else{
-					t.tt = TipoToken.TK_ASIGNACION;
-					estado = Estados.FIN;
-					t.lexema = "=";
-					index--;//---------------------------------------error 1?
-				}
-				break;
+					c = getChar ();
+					if (simboloTemporal.Equals ('=') && c.Equals ('=')) {
+						t.tt = TipoToken.TK_CIGUALDAD;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else {
+						t.tt = TipoToken.TK_ASIGNACION;
+						estado = Estados.FIN;
+						t.lexema = "=";
+						index--;//---------------------------------------error 1?
+					}
+					break;
 				case Estados.CMENOR: 
-				c = getChar();
-				if( simboloTemporal.Equals('<') && c.Equals('=') ){
-					t.tt = TipoToken.TK_MENORIGUAL;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else{
-					t.tt = TipoToken.TK_MENOR;
-					estado = Estados.FIN;
-					t.lexema = "<";
-					index--;//---------------------------------------error 2?
-				}
-				break;
+					c = getChar ();
+					if (simboloTemporal.Equals ('<') && c.Equals ('=')) {
+						t.tt = TipoToken.TK_MENORIGUAL;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else {
+						t.tt = TipoToken.TK_MENOR;
+						estado = Estados.FIN;
+						t.lexema = "<";
+						index--;//---------------------------------------error 2?
+					}
+					break;
 				case Estados.CMAYOR: 
-				c = getChar();
-				if( simboloTemporal.Equals('>') && c.Equals('=') ){
-					t.tt = TipoToken.TK_MAYORIGUAL;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else{
-					t.tt = TipoToken.TK_MAYOR;
-					estado = Estados.FIN;
-					t.lexema = ">";
-					index--;
-				}
-				break;
+					c = getChar ();
+					if (simboloTemporal.Equals ('>') && c.Equals ('=')) {
+						t.tt = TipoToken.TK_MAYORIGUAL;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else {
+						t.tt = TipoToken.TK_MAYOR;
+						estado = Estados.FIN;
+						t.lexema = ">";
+						index--;
+					}
+					break;
 				case Estados.CDIFERENCIAR: 
-				c = getChar();
-				if( simboloTemporal.Equals('!') && c.Equals('=') ){
-					t.tt = TipoToken.TK_CDIFERENTE;
-					estado = Estados.FIN;
-					t.lexema += c;
-				}else{
-					t.tt = TipoToken.TK_ERROR;
-					estado = Estados.FIN;
-					t.lexema = "!";
-					index--;
-				}
-				break;
+					c = getChar ();
+					if (simboloTemporal.Equals ('!') && c.Equals ('=')) {
+						t.tt = TipoToken.TK_CDIFERENTE;
+						estado = Estados.FIN;
+						t.lexema += c;
+					} else {
+						t.tt = TipoToken.TK_ERROR;
+						estado = Estados.FIN;
+						t.lexema = "!";
+						index--;
+					}
+					break;
 				case Estados.COMENTARIO_LINEA:
-				if(index == cadena.Length){
-					estado = Estados.FIN;
-					t.tt = TipoToken.TK_COMENTARIO_LINEA;
-					t.lexema = "";
+					if (index == cadena.Length) {
+						estado = Estados.FIN;
+						t.tt = TipoToken.TK_COMENTARIO_LINEA;
+						t.lexema = "";
+						break;
+					}
+					break;
+				case Estados.BLOQUE_C_I:
+					c = getChar ();
+					if (index == cadena.Length) {
+						estado = Estados.BLOQUE_C_D;
+					}
+					if (simboloTemporal.Equals ('*') && c.Equals ('/')) {
+						estado = Estados.FIN;
+						t.tt = TipoToken.TK_BLOQUE_C_I;
+					} else {
+						simboloTemporal = c;
+					}
+					break;
+				default: //si no entra en las demas categorias entonces es un error
+					t.tt = TipoToken.TK_ERROR; 
+					estado = Estados.FIN; 
+					t.lexema += c;
 					break;
 				}
-				break;
-				case Estados.BLOQUE_C_I:
-				c = getChar();
-				if(index == cadena.Length){
-					estado = Estados.BLOQUE_C_D;
-				}
-				if(simboloTemporal.Equals('*') && c.Equals('/')){
-					estado = Estados.FIN;
-					t.tt = TipoToken.TK_BLOQUE_C_I;
-				}else{
-					simboloTemporal = c;
-				}
-				break;
-				default: //si no entra en las demas categorias entonces es un error
-				t.tt = TipoToken.TK_ERROR; 
-				estado = Estados.FIN; 
-				t.lexema += c;
-				break;
+				index++;
 			}
-			index++;
+		} else {
+			linea = file.ReadLine ();
+			if (linea != null) {
+				cadena = linea.ToCharArray ();
+				numLinea++;
+				index = 0;
+				t.lexema = "";
+			} else {
+				t.tt = TipoToken.TK_EOF;
+			}
 		}
 		return t;
 	}
