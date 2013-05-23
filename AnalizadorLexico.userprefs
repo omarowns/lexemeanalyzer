@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="AnalizadorLexico/Main.cs">
     <Files>
-      <File FileName="AnalizadorLexico/Main.cs" Line="33" Column="39" />
+      <File FileName="AnalizadorLexico/Main.cs" Line="13" Column="7" />
+      <File FileName="AnalizadorLexico/AnalizadorLexico.cs" Line="146" Column="16" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

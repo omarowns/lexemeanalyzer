@@ -1,0 +1,17 @@
+program {}
+program {
+	int x, y;
+	write x;
+	write y;
+	danny boy
+}
+program {
+	int x, y;
+	x=0; // comentario 1
+	y=4; /* comentario 2 */
+	do {
+		if(x<y)
+			y=y-1;
+		fi
+	} while(y>=0);
+}
