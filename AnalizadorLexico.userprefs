@@ -1,15 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="AnalizadorLexico/Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AnalizadorLexico/AnalizadorLexico.cs">
     <Files>
-      <File FileName="AnalizadorLexico/Main.cs" Line="13" Column="7" />
-      <File FileName="AnalizadorLexico/AnalizadorLexico.cs" Line="146" Column="16" />
+      <File FileName="AnalizadorLexico/Main.cs" Line="10" Column="30" />
+      <File FileName="AnalizadorLexico/AnalizadorLexico.cs" Line="36" Column="33" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="AnalizadorLexico" expanded="True">
-            <Node name="Main.cs" selected="True" />
+            <Node name="AnalizadorLexico.cs" selected="True" />
           </Node>
         </State>
       </Pad>
@@ -20,7 +20,6 @@
         <State>
           <Value>linea</Value>
           <Value>cadena</Value>
-          <Value>Token.lexema</Value>
           <Value>c</Value>
           <Value>index</Value>
         </State>

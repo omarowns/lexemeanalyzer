@@ -21,6 +21,8 @@ class AnalizadorLexico{
 		public string lexema = "";
 	}
 
+	private string source = "";
+	private StreamReader file = null;
 	private string linea = "";
 	private char [] cadena;
 	private int index = 0, numLinea = 1;
@@ -29,12 +31,14 @@ class AnalizadorLexico{
 	private char simboloTemporal;
 	private char []simbolos_divided = {'+', '-', '*', '/', '<', '=', '>', '!', ';', '(', ')', '{', '}' };
 
-	public void lectura(string file_path){
-		if (file_path.Equals ("")) {
-			return;
-		}
-		StreamReader file = new StreamReader(@file_path);
-		while( ( linea = file.ReadLine() ) != null ){
+	public AnalizadorLexico(string src){
+		this.source = src;
+		this.file 	= new StreamReader (this.source);
+		this.linea 	= file.ReadLine ();
+	}
+
+	public void lectura(){
+		while( linea != null ){
 			cadena = linea.ToCharArray();
 			Token tk = new Token ();
 			while( index < cadena.Length ){
@@ -46,6 +50,7 @@ class AnalizadorLexico{
 			}
 			numLinea++;
 			index = 0;
+			linea = file.ReadLine ();
 		}
 	}
 

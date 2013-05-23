@@ -7,10 +7,10 @@ class Programa{
 	private static AnalizadorLexico al;
 	public static void Main(string[] args){
 		if (args.Length > 0) {
-			al = new AnalizadorLexico ();
-			al.lectura (args [0]);
+			al = new AnalizadorLexico (args[0]);
+			al.lectura ();
 		} else {
-			al.lectura (@"");
+			Console.WriteLine ("Error");
 		}
 	}
 }
